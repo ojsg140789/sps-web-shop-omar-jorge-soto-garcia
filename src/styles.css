@@ -7,22 +7,8 @@ body {
     flex-direction: column;
 }
 
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    min-height: 100vh;
-}
-
-/* The content area will expand to take up the available space */
-.content {
-    flex: 1;
-}
-
-/* Footer styling */
 #footer {
     background-color: #4D4D4D;
-    /* Adjusted footer background */
     color: #E0E0E0;
     padding: 20px;
     text-align: center;
@@ -33,7 +19,21 @@ body {
     color: #FFFFFF;
 }
 
-/* Buttons */
+#logoImg {
+    width: 200px;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+}
+
 .btn-primary {
     background-color: #FF0000;
     color: #FFFFFF;
@@ -49,10 +49,9 @@ body {
 }
 
 .btn-secondary:hover {
-    background-color: #F2F2F2;
+    background-color: #6c757d;
 }
 
-/* Icons */
 .icon-primary {
     color: #FF0000;
 }
@@ -61,18 +60,19 @@ body {
     color: #FFFFFF;
 }
 
-/* Content Area */
 .content-area {
     background-color: #FAFAFA;
     color: #000000;
 }
 
-/* Borders */
 .border-default {
     border-color: #666666;
 }
 
-/* Accents */
 .accent {
     color: #FF6666;
+}
+
+.col-width-auto {
+    width: auto;
 }

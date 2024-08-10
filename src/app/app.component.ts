@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
+
+import { AuthService } from './services/auth.service';
+import { UserInterface } from './models/user-interface';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +14,22 @@ import { FooterComponent } from "./shared/footer/footer.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'sps-web-shop-omar-jorge-soto-garcia';
+  authService = inject(AuthService);
+  
+  ngOnInit() {
+    this.authService.user$
+    .subscribe(
+      ( user: any ) => {
+        if(user) {
+          this.authService.currentUserSignal.set({
+            id: user.uid,
+            username: user.displayName,
+            email: user.email
+          });
+        }else {
+          this.authService.currentUserSignal.set(null);
+        }
+      }
+    );
+  }
 }
