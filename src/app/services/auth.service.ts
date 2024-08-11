@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, user } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, user } from '@angular/fire/auth';
 import { UserInterface } from '@app/models/user-interface';
 import { from, Observable } from 'rxjs';
 
@@ -7,12 +7,11 @@ import { from, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
   firebaeAuth = inject(Auth);
   user$ = user(this.firebaeAuth);
   currentUserSignal = signal<UserInterface | null | undefined >(undefined);
-
-  constructor() { }
+  
+  private user = signal<UserInterface | null>(null);
 
   register(username: string, email: string, password: string): Observable<void> {
     const promise = createUserWithEmailAndPassword(this.firebaeAuth, email, password)
@@ -27,7 +26,21 @@ export class AuthService {
   }
 
   logout(): Observable<void> {
-    const promise = signOut(this.firebaeAuth);
+    const promise = signOut(this.firebaeAuth).then(() => {
+      this.user.set(null);
+    });
     return from(promise);
+  }
+
+  isLoggedIn() {
+    return this.user() !== null;
+  }
+
+  getUser() {
+    return this.user();
+  }
+
+  public onAuthStateChanged(callback: (user: any | null) => void) {
+    return onAuthStateChanged(this.firebaeAuth, callback);
   }
 }

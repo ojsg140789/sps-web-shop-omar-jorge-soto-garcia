@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { NoPageFoundComponent } from './pages/no-page-found/no-page-found.component';
+import { authGuard } from './guards/auth.guard';
 
 
 
@@ -20,19 +21,22 @@ export const routes: Routes = [
         path: 'dashboard',
         loadComponent: () => 
             import('./pages/dashboard/dashboard.component')
-                .then(m => m.DashboardComponent)
+                .then(m => m.DashboardComponent),
+        canActivate: [authGuard]
     },
     {
         path: 'detail/:id',
         loadComponent: () => 
             import('./pages/product-detail/product-detail.component')
-                .then(m => m.ProductDetailComponent)
+                .then(m => m.ProductDetailComponent),
+        canActivate: [authGuard]
     },
     {
         path: 'cart',
         loadComponent: () => 
             import('./pages/cart/cart.component')
-                .then(m => m.CartComponent)
+                .then(m => m.CartComponent),
+        canActivate: [authGuard]                
     },
     { path: '',   redirectTo: '/dashboard', pathMatch: 'full' },
     { path: '**', component: NoPageFoundComponent }
