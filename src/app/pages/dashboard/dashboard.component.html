@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+<div class="row">
+    @for( product of products; track product.id) {
+        <div id="product-item-container" class="col-md-4 col-sm-12 my-1">
+            <app-product-item [item]="product"></app-product-item>
+        </div>
+    }
+</div>
