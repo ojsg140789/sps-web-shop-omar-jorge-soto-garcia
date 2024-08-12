@@ -17,9 +17,9 @@ export class ProductsService {
     return collectionData(productsCollection, { idField: 'id' });
   }
 
-  getTaskById(id: string): Observable<Product> {
-    const taskDocRef = doc(this.firestore, `products/${id}`);
-    return docData(taskDocRef, { idField: 'id' });
+  getProductById(id: string): Observable<Product> {
+    const productDocRef = doc(this.firestore, `products/${id}`);
+    return docData(productDocRef, { idField: 'id' });
   }
 
 }

@@ -55,16 +55,17 @@ export class RegisterComponent {
       },
       error: (error) => {
         let _message = {
-          title: '',
-          text: ''
+          title: 'Error',
+          text: 'Ocurrio un error en el servicio'
         }
         this.errorMessage = error.code;
         if(this.errorMessage == APP_CONSTANTS.AUTH.EMAILUSED) {
           _message.title = APP_CONSTANTS.AUTH.EMAILUSEDMESSAGE
+          _message.text = ''
         }
         Swal.fire({
           title: _message.title,
-          text: '',
+          text: _message.text,
           icon: 'info'
         });
       }
