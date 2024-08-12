@@ -13,6 +13,7 @@
                             <input type="email" class="form-control" id="validationCustomEmail"
                                 aria-describedby="inputGroupPrepend" formControlName="email"
                                 autocomplete="off"
+                                name="email"
                                 [ngClass]="{'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
                                 @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
                                     <div class="invalid-feedback">
@@ -27,6 +28,7 @@
                             <input type="password" class="form-control" id="validationCustomPassword"
                                 aria-describedby="inputGroupPrepend" formControlName="password"
                                 autocomplete="off"
+                                name="password"
                                 [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
                                 @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
                                     <div class="invalid-feedback">
@@ -36,7 +38,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button type="button" class="btn btn-secondary" (click)="login()" [disabled]="loginForm.invalid">Entrar</button>
+                        <button type="button" id="btnLogin" class="btn btn-secondary" (click)="login()" [disabled]="loginForm.invalid">Entrar</button>
                     </div>
                     <div class="col-md-12">
                         <a type="button" class="btn btn-link" href="javascript:void(0)" [routerLink]="['/register']">Registrarse</a>
