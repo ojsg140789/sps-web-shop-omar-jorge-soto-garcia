@@ -23,8 +23,8 @@
                                 </ul>
                             </div>
     
-                            <button type="button" class="btn btn-secondary" disabled>
-                                <fa-icon [icon]="faCartShopping" class="me-2"></fa-icon>
+                            <button type="button" id="btnCart" class="btn btn-secondary" [routerLink]="['/cart']">
+                                <fa-icon [icon]="faCartShopping"></fa-icon> <span class="badge text-bg-secondary">{{itemCount}}</span>
                             </button>
                         </div>
                     }

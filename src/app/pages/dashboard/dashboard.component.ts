@@ -24,7 +24,6 @@ export class DashboardComponent {
     this.producstsService.getProducts().subscribe({
       next: products => {
         this.products = products;
-        console.log('this.products', this.products);
       },
       error: () => {
         let _message = {

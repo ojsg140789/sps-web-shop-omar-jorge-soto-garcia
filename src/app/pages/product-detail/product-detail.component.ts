@@ -1,21 +1,24 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { Product } from '@app/models/product';
 import { ProductsService } from '@app/services/products.service';
+import { CartService } from '@app/services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, SweetAlert2Module],
+  imports: [CommonModule, RouterModule, SweetAlert2Module],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent {
   route = inject(ActivatedRoute);
-  productService = inject(ProductsService)
+  productService = inject(ProductsService);
+  cartService = inject(CartService);
   id: string = '';
   product: Product = {
     calificacion: 0,
@@ -46,6 +49,22 @@ export class ProductDetailComponent {
           });
         }
       });
+    });
+  }
+
+  agregarCarrito( product: Product) {
+    let cartProduct = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      url: product.imgUrl,
+      quantity: 1
+    };
+    this.cartService.addToCart(cartProduct);
+    Swal.fire({
+      title: "Producto Agregado",
+      text: "",
+      icon: "success"
     });
   }
 }
